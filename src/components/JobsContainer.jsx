@@ -24,11 +24,6 @@ export const JobsContainer = () => {
           loading: false,
         });
       });
-    const pagination = document.querySelector(".pagination");
-    pagination.children[1 + data.selected].classList.add(
-      "bg-dark-blue",
-      "text-white"
-    );
   };
   useEffect(() => {
     const apiEndpoint = `https://www.themuse.com/api/public/jobs?page=1`;
@@ -41,8 +36,6 @@ export const JobsContainer = () => {
           loading: false,
         });
       });
-    const pagination = document.querySelector(".pagination");
-    pagination.children[1].classList.add("bg-dark-blue", "text-white");
   }, []);
   return (
     <>
@@ -64,6 +57,7 @@ export const JobsContainer = () => {
         pageClassName="p-1 px-3 border text-dark-blue border-dark-blue hover:bg-dark-blue hover:text-white rounded-sm"
         nextClassName="text-dark-blue rounded-sm border border-dark-blue py-1 px-3"
         previousClassName="text-dark-blue rounded-sm border border-dark-blue py-1 px-3"
+        activeClassName="bg-dark-blue text-white"
       />
     </>
   );
