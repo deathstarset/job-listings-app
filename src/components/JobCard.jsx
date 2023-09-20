@@ -1,24 +1,10 @@
-import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export const JobCard = ({ job }) => {
-  function getDate(date) {
-    const timeDifference = Date.now() - Date.parse(date);
-    const seconds = Math.floor(timeDifference / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    if (days > 0) {
-      return days + " days ago";
-    } else if (hours > 0) {
-      return hours + " hours ago";
-    } else if (minutes > 0) {
-      return minutes + " minutes ago";
-    } else {
-      return seconds + " seconds ago";
-    }
-  }
   return (
-    <div className="job-card flex gap-4 bg-white p-2 rounded-md shadow-sm">
+    <Link
+      className="job-card flex gap-4 bg-white p-2 rounded-md shadow-sm cursor-pointer"
+      to={`jobs/${job.id}`}
+    >
       <img
         src={`https://logo.clearbit.com/${job.company.short_name}.com`}
         onError={(e) => {
@@ -43,6 +29,22 @@ export const JobCard = ({ job }) => {
           <p>{getDate(job.publication_date)}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
+export function getDate(date) {
+  const timeDifference = Date.now() - Date.parse(date);
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  if (days > 0) {
+    return days + " days ago";
+  } else if (hours > 0) {
+    return hours + " hours ago";
+  } else if (minutes > 0) {
+    return minutes + " minutes ago";
+  } else {
+    return seconds + " seconds ago";
+  }
+}
